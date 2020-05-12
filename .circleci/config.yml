@@ -21,9 +21,7 @@ jobs:
           command: sudo pip install aws-sam-cli
       - run:
           name: Setup config
-          command: |
-            cd github-cognito-openid-wrapper
-            cp $env_name-config.sh config.sh
+          command: cp $env_name-config.sh config.sh
       - run:
           name: Install NPM deps
           command: npm install
