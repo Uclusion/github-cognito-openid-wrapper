@@ -1,0 +1,62 @@
+
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7.2
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: Get aws cli
+          command: sudo pip install awscli
+      - run:
+          name: Get aws sam
+          command: sudo pip install aws-sam-cli
+      - run:
+          name: Setup config
+          command: |
+            cd github-cognito-openid-wrapper
+            cp $env_name-config.sh config.sh
+      - run:
+          name: Install NPM deps
+          command: npm install
+      - run:
+          name: Deploy
+          command: npm run deploy
+
+workflows:
+  version: 2
+  deploy-dev:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^dev_backend.*/
+            branches:
+              ignore: /.*/
+          context: dev
+  deploy-stage:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^stage_backend.*/
+            branches:
+              ignore: /.*/
+          context: stage
+  deploy-production:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^production_backend.*/
+            branches:
+              ignore: /.*/
+          context: production
