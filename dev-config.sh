@@ -21,6 +21,3 @@ export BUCKET_NAME=congito-github-wrapper-bucket-dev # An S3 bucket name to use 
 export STACK_NAME=cognito-github-openid-wrapper # The name of the stack to create
 export REGION=us-west-2 # AWS region to deploy the stack and bucket in
 export STAGE_NAME=dev # Stage name to create and deploy to in API gateway
-
-# Variables required if deploying a node http server
-export PORT=# <Port to start the server on>
