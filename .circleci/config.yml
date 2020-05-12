@@ -14,6 +14,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: get node repo
+          command: wget -qO- https://deb.nodesource.com/setup_10.x | sudo -E bash -
+      - run:
+          name: install node
+          command: sudo apt-get install -y nodejs
+      - run:
           name: Get aws cli
           command: sudo pip install awscli
       - run:
