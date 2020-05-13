@@ -17,6 +17,10 @@ export COGNITO_REDIRECT_URI=https://dev.auth.uclusion.com/oauth2/idpresponse
 # SPLUNK_INDEX=# Index for all logged events
 
 # Variables required if deploying with API Gateway / Lambda
+# serverless and AWS use different caps for the vars, so translate here
+export AWS_ACCESS_KEY_ID=$aws_access_key_id
+export AWS_SECRET_ACCESS_KEY$aws_secret_access_key
+
 export BUCKET_NAME=congito-github-wrapper-bucket-dev # An S3 bucket name to use as the deployment pipeline
 export STACK_NAME=cognito-github-openid-wrapper # The name of the stack to create
 export REGION=us-west-2 # AWS region to deploy the stack and bucket in
