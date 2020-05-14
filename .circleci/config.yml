@@ -26,9 +26,6 @@ jobs:
           name: Get aws sam
           command: sudo pip install aws-sam-cli
       - run:
-          name: Setup config
-          command: cp $env_name-config.sh config.sh
-      - run:
           name: Install NPM deps
           command: npm install
       - run:
