@@ -17,7 +17,7 @@ const getUserInfo = accessToken =>
         // and http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
         const claims = {
           sub: `${userDetails.id}`, // OpenID requires a string
-          name: userDetails.name,
+          name: userDetails.name || userDetails.login, // uclusion requires a name so use login if not around
           preferred_username: userDetails.login,
           profile: userDetails.html_url,
           picture: userDetails.avatar_url,
